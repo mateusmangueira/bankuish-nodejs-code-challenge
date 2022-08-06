@@ -1,0 +1,12 @@
+{
+  "name": "bankuish-nodejs-code-challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mateusmangueira/bankuish-nodejs-code-challenge.git",
+  "author": "mateusmangueira <mateus.mangueira@ccc.ufcg.edu.br>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  }
+}
