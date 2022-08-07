@@ -55,6 +55,6 @@ $ yarn install or npm install
 # Running the server
 $ yarn start or npm run start
 
-# The server is going to run at port 3333 - acess <http://localhost:3333>
+# The server is going to run at port 3333 - access <http://localhost:3333>
 
 ```
