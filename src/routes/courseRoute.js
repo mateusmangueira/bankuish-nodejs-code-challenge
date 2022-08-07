@@ -7,21 +7,21 @@ const courseRoutes = ({
 }) => ({
   // GET Courses
   '/courses:get': async (req, res) => {
-    res.write('GET Courses');
-    res.end();
+    const courses = await courseService.find();
+    res.write(JSON.stringify({ courses }));
+    return res.end();
   },
 
   // POST Courses
   '/courses:post': async (req, res) => {
     const data = await once(req, 'data');
-    const course = JSON.parse(data);
-    const { courseId, desiredCourse, requiredCourse } = new Course(course);
+    const item = JSON.parse(data);
+    const course = new Course(course);
+    const createdCourse = await courseService.create(item);
+
     res.writeHead(201, DEFAULT_HEADER);
-    res.write(JSON.stringify({
-      courseId,
-      desiredCourse,
-      requiredCourse
-    }));
+    res.write(JSON.stringify({ course: createdCourse }));
+
     return res.end();
   },
 

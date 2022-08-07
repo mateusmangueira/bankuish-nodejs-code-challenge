@@ -9,8 +9,8 @@ export default class UserService {
     return await this.userRepository.find();
   }
 
-  async create(data) {
-    return await this.userRepository.create(data);
+  async create() {
+    return await this.userRepository.create();
   }
 
   async update(data) {

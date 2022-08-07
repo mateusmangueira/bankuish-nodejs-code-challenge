@@ -18,7 +18,7 @@ model Course {
   courseId       String  @id @default(uuid())
   User           User?   @relation(fields: [userId], references: [userId])
   userId         String?
-  desiredCourse  String  @unique
+  desiredCourse  String? @unique
   requiredCourse String  @unique
   order          Int     @unique
 

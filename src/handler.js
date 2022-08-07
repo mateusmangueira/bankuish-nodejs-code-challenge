@@ -3,12 +3,18 @@ import { DEFAULT_HEADER } from './util/sharedCode.js';
 import { courseRoutes } from './routes/courseRoute.js';
 import { userRoutes } from './routes/userRoute.js';
 
+import { userFactory } from './factories/userFactory.js';
+import { courseFactory } from './factories/courseFactory.js';
+
+const courseService = courseFactory();
+const userService = userFactory();
+
 const allCourseRoutes = courseRoutes({
-  courseService: {}
+  courseService
 });
 
 const allUserRoutes = userRoutes({
-  userService: {}
+  userService
 });
 
 const allRoutes = {
