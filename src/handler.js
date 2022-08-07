@@ -1,18 +1,19 @@
 import { parse } from 'node:url';
 import { DEFAULT_HEADER } from './util/sharedCode.js';
+import { courseRoutes } from './routes/courseRoute.js';
+import { userRoutes } from './routes/userRoute.js';
 
-const routes = {
-  // GET Courses
-  '/courses:get': (req, res) => {
-    res.write('GET');
-    res.end();
-  },
+const allCourseRoutes = courseRoutes({
+  courseService: {}
+});
 
-  // POST Courses
-  '/courses:post': (req, res) => {
-    res.write('POST');
-    res.end();
-  },
+const allUserRoutes = userRoutes({
+  userService: {}
+});
+
+const allRoutes = {
+  ...allCourseRoutes,
+  ...allUserRoutes,
 
   //404 Routes - if no route is found
   default: (req, res) => {
@@ -26,7 +27,7 @@ function handler(req, res) {
   const { url, method } = req;
   const { pathname } = parse(url, true);
   const key = `${pathname}:${method.toLowerCase()}`;
-  const route = routes[key] || routes.default;
+  const route = allRoutes[key] || allRoutes.default;
 
   return Promise.resolve(route(req, res)).catch(handleError(res));
 }

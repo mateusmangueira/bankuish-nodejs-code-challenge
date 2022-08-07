@@ -7,9 +7,14 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/index.js",
+    "test": "node --test tests/"
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "pg": "^8.7.3"
   }
 }

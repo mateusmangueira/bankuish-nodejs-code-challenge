@@ -35,4 +35,26 @@
         - [ ] it should test the endpoint for deleting users data
         - [ ] it should test when the application throws an error
 
+## Fill in enviroment variables
+
+```bash
+
+ # Create .env file
+ - Rename .env.example to .env
+ - Fill in all informations about your enviroment variables
+
+```
+
 ## How to Run this Project
+
+```bash
+
+# Install all dependencies to run the server
+$ yarn install or npm install
+
+# Running the server
+$ yarn start or npm run start
+
+# The server is going to run at port 3333 - acess <http://localhost:3333>
+
+```
