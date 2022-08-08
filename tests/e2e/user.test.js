@@ -1,20 +1,15 @@
-import test from "node:test";
+import nodeTest from "node:test";
 import assert from "node:assert";
 import { promisify } from 'node:util';
 
-
-test('Course Integration Test Suite', async (t) => {
+nodeTest('User Integration Test Suite', async (t) => {
   const testPort = process.env.PORT
   const { server } = await import('../../src/index.js');
 
-  const testServerAddress = `http://localhost:${testPort}/courses`;
+  const testServerAddress = `http://localhost:${testPort}/users`;
 
-  await t.test('it should create a course', async () => {
-    const data = {
-      "desiredCourse": "Investment",
-      "requiredCourse": "Finance",
-      "order": 0
-    }
+  await t.test('it should create a user', async () => {
+    const data = {}
 
     const req = await fetch(testServerAddress, {
       method: 'POST',
@@ -27,8 +22,8 @@ test('Course Integration Test Suite', async (t) => {
     const result = await res.json();
 
     //uuid as a id, so must be a string bigger than 30 caracters
-    assert.ok(result.courseId.length > 30, 'courseId should be a valid uuid');
-
+    assert.ok(result.userId.length > 30, 'userId should be a valid uuid');
   })
+
   await promisify(server.close.bind(server))();
 }) 

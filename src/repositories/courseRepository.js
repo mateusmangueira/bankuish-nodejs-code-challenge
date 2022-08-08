@@ -15,9 +15,10 @@ export default class CourseRepository {
   }
 
   async create(data) {
-    const { desiredCourse, requiredCourse, order } = data;
+    const { userId, desiredCourse, requiredCourse, order } = data;
     const course = await this.prismaClient.course.create({
       data: {
+        userId,
         desiredCourse,
         requiredCourse,
         order
