@@ -1,4 +1,5 @@
 import { prismaClient } from "../database/prisma.client.js";
+import jwt from "jsonwebtoken";
 
 export default class UserRepository {
   constructor() {
@@ -7,19 +8,27 @@ export default class UserRepository {
 
   async find() {
     const user = await this.prismaClient.user.findMany({
-      select: {
-        userId: true,
-        courses: true,
-      },
+      include: {
+        courses: {
+          orderBy: {
+            order: "asc",
+          }
+        }
+      }
     });
     return user;
   }
 
   async create() {
     const user = await this.prismaClient.user.create({
-      data: {},
+      data: {}
     });
-    return user;
+
+    const payload = {
+      sub: user.userId,
+    };
+
+    return { accessToken: jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION_TIME }), user };
   }
 
   async update(data) {
@@ -30,7 +39,7 @@ export default class UserRepository {
       },
       data: {
         courses,
-      },
+      }
     });
 
     return user;

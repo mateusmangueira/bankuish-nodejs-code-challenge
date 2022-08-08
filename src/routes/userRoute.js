@@ -3,7 +3,7 @@ import User from '../entities/user.js';
 import { DEFAULT_HEADER } from '../util/sharedCode.js';
 
 const userRoutes = ({
-  userService
+  userService, authService
 }) => ({
   // GET users
   '/users:get': async (req, res) => {

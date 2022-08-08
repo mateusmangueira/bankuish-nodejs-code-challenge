@@ -1,8 +1,8 @@
 import { randomUUID } from 'node:crypto';
 
 export default class User {
-  constructor({ course }) {
+  constructor({ courses }) {
     this.userId = randomUUID();
-    this.course = [course];
+    this.courses = courses;
   }
 }
