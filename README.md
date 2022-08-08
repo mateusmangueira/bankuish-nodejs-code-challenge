@@ -28,8 +28,20 @@
 # Install all dependencies to run the server
 $ yarn install or npm install
 
+# Generate Prisma files to database sync
+$ yarn prisma db push or npx prisma db pull
+
 # Running the server
 $ yarn start or npm run start
 
 # The server is going to run at port that have decided on .env - access <http://localhost:PORT>
+```
+
+## Tests
+
+```bash
+
+# e2e tests
+$ yarn test
+
 ```
