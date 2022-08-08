@@ -38,16 +38,13 @@ export default class CourseRepository {
   }
 
   async update(data) {
-    const { courseId, desiredCourse, requiredCourse, order, userId } = data;
+    const { courseId, desiredCourse, requiredCourse, userId } = data;
     const course = await this.prismaClient.course.findUniqueOrThrow({
       where: {
         courseId,
       },
     });
 
-    if (course.order <= order) {
-      throw new Error("You can't enroll to this course, must finish current course first!");
-    }
     const updatedCourse = await this.prismaClient.course.update({
       where: {
         courseId,
@@ -55,10 +52,14 @@ export default class CourseRepository {
       data: {
         desiredCourse,
         requiredCourse,
-        order,
         userId,
       },
     });
+
+    if (course.order < updatedCourse) {
+      throw new Error("You cannot enroll for this course, must finish current course first");
+    }
+
     return updatedCourse;
   }
 }
