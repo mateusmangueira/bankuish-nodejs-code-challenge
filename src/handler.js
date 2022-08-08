@@ -5,17 +5,17 @@ import { userRoutes } from './routes/userRoute.js';
 
 import { userFactory } from './factories/userFactory.js';
 import { courseFactory } from './factories/courseFactory.js';
-import { isAuthorized } from './middlewares/auth.js';
+
 
 const courseService = courseFactory();
 const userService = userFactory();
 
 const allCourseRoutes = courseRoutes({
-  courseService, isAuthorized
+  courseService,
 });
 
 const allUserRoutes = userRoutes({
-  userService, isAuthorized
+  userService
 });
 
 const allRoutes = {
